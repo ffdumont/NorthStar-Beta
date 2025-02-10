@@ -110,7 +110,14 @@ function handleWaypoint(point, state) {
       state.previousWaypoint.elevation
     );
     const leg = new Leg(state.previousWaypoint, waypoint, legAltitudeFeet);
-    logDebug(`🔗 Created Leg: ${leg.name} (Altitude: ${leg.altitude} ft)`);
+    logDebug(`🔗 Created Leg: ${leg.name} (Altitude: ${leg.altitudeFeet} ft)`);
+    logDebug(
+      `   📍 Midpoint: { latitude: ${leg.midpoint.latitude.toFixed(
+        6
+      )}, longitude: ${leg.midpoint.longitude.toFixed(6)} }`
+    );
+    logDebug(`   📏 Distance: ${leg.lengthNM.toFixed(1)} NM`);
+    logDebug(`   🧭 True Heading: ${leg.trueHeading.toFixed(1)}°`);
     state.currentRoute.addLeg(leg);
   }
 
