@@ -105,11 +105,17 @@ function handleWaypoint(point, state) {
   }
 
   if (state.previousWaypoint) {
-    const leg = new Leg(state.previousWaypoint, waypoint, point.elevation);
-    logDebug(`🔗 Created Leg: ${leg.name} (Altitude: ${leg.altitudeFeet} ft)`);
+    // ✅ Convert altitude to feet only when creating the Leg
+    const legAltitudeFeet = convertMetersToFeet(
+      state.previousWaypoint.elevation
+    );
+    const leg = new Leg(state.previousWaypoint, waypoint, legAltitudeFeet);
+    logDebug(`🔗 Created Leg: ${leg.name} (Altitude: ${leg.altitude} ft)`);
     state.currentRoute.addLeg(leg);
   }
 
+  // ✅ Store original elevation in meters (useful for reference or debugging)
+  waypoint.elevation = point.elevation;
   state.previousWaypoint = waypoint;
 }
 

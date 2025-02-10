@@ -59,7 +59,7 @@ function logFlightPlan(flightPlan) {
       logDebug(
         `      🔗 Leg #${legIndex + 1}: ${leg.fromWaypoint.name} ➝ ${
           leg.toWaypoint.name
-        } (Alt: ${leg.altitudeFeet} ft)`
+        } (Alt: ${leg.altitude} ft)`
       );
     });
   });

@@ -27,13 +27,10 @@ class FlightPlan {
    * @param {Airfield} airfield - The airfield to add.
    */
   addAirfield(airfield) {
-    if (
-      !this.airfields.some((a) => a.fullDesignator === airfield.fullDesignator)
-    ) {
-      this.airfields.push(airfield);
-      this.updateFlightPlanName();
-      logDebug(`✈️ Added Airfield to FlightPlan: ${airfield.fullDesignator}`);
-    }
+    this.airfields.push(airfield);
+    this.updateFlightPlanName();
+
+    logDebug(`✈️ Added Airfield to FlightPlan: ${airfield.fullDesignator}`);
   }
 
   /**
